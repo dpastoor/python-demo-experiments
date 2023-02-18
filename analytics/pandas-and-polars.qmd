@@ -1,0 +1,30 @@
+---
+title: "matplotlib demo"
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+```{python}
+import polars as pl
+import pandas as pd
+```
+
+```{python}
+pldf = pl.DataFrame({'a': [1,2,3,4,5], 'b':[10,20,30,40,50]})
+  # Polars
+pldf.with_column(
+  pl.when(pl.col("a") <= 3)
+  .then(pl.col("b") // 10)
+  .otherwise(pl.col("b"))
+)
+
+pldf
+```
+
+```{python}
+pddf = pldf = pd.DataFrame({'a': [1,2,3,4,5], 'b':[10,20,30,40,50]})
+pddf.loc[pddf['a'] <= 3, "b"] = pddf['b'] // 10
+pddf
+```
