@@ -1,0 +1,5 @@
+## deployment
+
+```
+rsconnect deploy fastapi .
+```
